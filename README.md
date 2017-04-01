@@ -7,14 +7,14 @@
 [![codecov.io](https://codecov.io/github/wlandau/grapes/coverage.svg?branch=master)](https://codecov.io/github/wlandau/grapes?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/grapes)](http://cran.r-project.org/package=grapes)
 
-The `grapes` package turns arbitrary functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), you can avoid cumbersome parentheses this way.
+In some computing subcultures, "grapes" refers to the percent sign, which R uses to name binary operators such as `%*%`. Here, `grapes` is an R package that turns arbitrary functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), this allows you to avoid cumbersome parentheses in your code.
 
 ```r
 library(grapes)
 grapes(rbind, from = "base") # `from` defaults to your current workspace
 nrow(sleep) # 20
 longer = sleep %rbind% sleep %rbind% sleep # No clumsy parentheses!
-nrow(longer) # 60. We'd all like to sleep longer.
+nrow(longer) # 60. Most of us would like to sleep longer.
 ```
 
 # Installation

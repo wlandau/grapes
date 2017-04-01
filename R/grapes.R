@@ -18,7 +18,7 @@
 #' grapes(rbind, from = "base") # Use `from` to specify a package or environment to search.
 #' nrow(sleep) # 20
 #' longer = sleep %rbind% sleep %rbind% sleep # No clumsy parentheses!
-#' nrow(longer) # 60. We'd all like to sleep longer.
+#' nrow(longer) # 60. Most of us would like to sleep longer.
 grapes = function(..., list = character(0), from = to, to = parent.frame()){
   dots = match.call(expand.dots = FALSE)$...
   names = vapply(dots, as.character, "") %>% c(list)

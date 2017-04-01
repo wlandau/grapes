@@ -13,7 +13,7 @@ vignette: >
   <img width="400" src="logo.png" alt="" style = "border: none">
 </h1>
 
-The `grapes` package turns arbitrary functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), you can avoid cumbersome parentheses this way.
+In some computing subcultures, "grapes" refers to the percent sign, which R uses to name binary operators such as `%*%`. Here, `grapes` is an R package that turns arbitrary functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), this allows you to avoid cumbersome parentheses in your code.
 
 ```{r}
 library(grapes)
@@ -68,4 +68,3 @@ assign_operator()
 # 1 %nextop% 2 # throws an error since %nextop% is not defined in your workspace
 eval(parse(text = "1 %nextop% 2"), envir = to_env)
 ```
-
