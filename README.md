@@ -30,7 +30,7 @@ devtools::install_github("wlandau/grapes", build = TRUE)
 If you specify a tag, you can install a GitHub release.
 
 ```r
-devtools::install_github("wlandau/grapes@v0.0.0", build = TRUE)
+devtools::install_github("wlandau/grapes@v1.0.0", build = TRUE)
 ```
 
 # Tutorial
