@@ -13,25 +13,33 @@ vignette: >
   <img width="400" src="logo.png" alt="" style = "border: none">
 </h1>
 
-In some computing subcultures, "grapes" refers to the percent sign, which R uses to name binary operators such as `%*%`. Here, `grapes` is an R package that turns arbitrary functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), this allows you to avoid cumbersome parentheses in your code.
+In some computing subcultures, the term "grapes" refers to the percent sign, which R uses to name binary operators such as `%*%`. Here, `grapes` is an R package that turns arbitrary functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), this allows you to avoid cumbersome parentheses in your code.
 
 ```{r}
 library(grapes)
-grapes(rbind, c, from = "base") # Use `from` to specify a package or environment to search. 
+grow(rbind, c, from = "base") # Use `from` to specify a package or environment to search.
+bunch()
 nrow(sleep) 
 longer = sleep %rbind% sleep %rbind% sleep
 nrow(longer)
 1 %rbind% 2 %c% 3
 ```
 
-In your workspace, you can define your own functions for your operators. That way, there is no need to set the `from` argument to tell `grapes()` where to look.
+In your workspace, you can define your own functions for your operators. That way, there is no need to set the `from` argument to tell `grow()` where to look.
 
 ```{r}
 myop <- function(x, y){
   1/x + 1/y
 }
-grapes(myop)
+grow(myop)
 2 %myop% 3
+```
+
+Use `bunch()` and `functions()` to list the available operators and non-operator functions.
+
+```{r}
+bunch()
+functions()
 ```
 
 **Operators are left-associative!**
@@ -43,13 +51,13 @@ grapes(myop)
 ```
 
 
-Optionally, you can go crazy and try to turn everything from a package or environment into an operator. But be warned: for packages, only exported functions will become usable operators. Also, `grapes()` automatically loads the package you specify, but `ls("package:...")` requires that you load the package first.
+You can even turn all available functions from a package or environment into operators. But be warned: there is no guarantee that these operators will actually work.
 
 ```{r}
-library(knitr) # needed for the next line
-suppressWarnings( # not everything in knitr is an exported function
-  grapes(list = ls("package:knitr"), from = "knitr") # same as objects("package:knitr")
-)
+functions("knitr")
+bunch("knitr")
+grow(from = "knitr")
+bunch()
 `%purl%`
 ```
 
@@ -62,9 +70,13 @@ from_env$nextop = function(a, b, extra = 3){
   sqrt(a^2 + b^2) + extra
 }
 assign_operator = function(){
-  grapes(nextop, from = from_env, to = to_env)
+  grow(nextop, from = from_env, to = to_env)
 }
 assign_operator()
 # 1 %nextop% 2 # throws an error since %nextop% is not defined in your workspace
 eval(parse(text = "1 %nextop% 2"), envir = to_env)
+bunch(from_env)
+functions(from_env)
+bunch(to_env)
+functions(to_env)
 ```

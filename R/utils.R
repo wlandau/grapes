@@ -14,7 +14,11 @@ grape_names = function(names){
   paste0("%", names, "%")
 }
 
-get_from = function(from){
+name_if_function = function(name, from){
+  if(is.function(from[[name]])) name
+}
+
+parse_from = function(from){
   if(is.character(from)){
     require(from, character.only = TRUE)
     from = paste0("package:", from) %>%

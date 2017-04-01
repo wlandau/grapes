@@ -1,0 +1,32 @@
+# library(testthat); devtools::load_all()
+
+context("packages")
+
+test_that("grow() loads from a package", {
+  expect_error(1 %knit_params% 2)
+  expect_error(knit_params(1, 2))
+  expect_error(ls("package:knitr"))
+  grow(knit_params, from = "knitr")
+  expect_equal(1 %knit_params% 2, knit_params(1, 2))
+  out = ls("package:knitr")
+  expect_true(length(out) > 0)
+  detach("package:knitr")
+})
+
+test_that("grow() can load everything from a package", {
+  expect_error(1 %knit_params% 2)
+  expect_equal(bunch(), character(0))
+  grow(from = "knitr")
+  expect_equal(1 %knit_params% 2, knit_params(1, 2))
+  expect_true(length(bunch()) > 2)
+  envir = as.environment("package:knitr")
+  expect_equal(intersect(bunch(), functions()), character(0))
+  expect_equal(intersect(bunch(), functions("knitr")), character(0))
+  expect_equal(intersect(bunch("knitr"), functions()), character(0))
+  expect_equal(intersect(bunch("knitr"), functions("knitr")), character(0))
+  for(op in bunch())
+    expect_true(is.function(environment()[[op]]))
+  for(f in functions("knitr"))
+    expect_true(is.function(envir[[f]]))
+  detach("package:knitr")
+})
