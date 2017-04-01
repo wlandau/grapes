@@ -19,3 +19,4 @@ Rbuildignore/*.pdf
 Rbuildignore/local/
 .Rproj.user
 vignettes/*.html
+inst/doc
