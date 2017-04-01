@@ -38,4 +38,6 @@ test_that("grow() assigns in an environment", {
   expect_equal(bunch(e), character(0))
   expect_equal(functions(e2), character(0))
   expect_equal(bunch(e2), "%myfun%")
+  expect_equal(functions(), character(0))
+  expect_equal(bunch(), character(0))
 })
