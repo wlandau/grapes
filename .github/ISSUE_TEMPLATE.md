@@ -1,0 +1,1 @@
+Please read the [issue tracker](https://github.com/wlandau/grapes/issues) first, taking care to browse both open and closed issues. Afterwards, if you still feel the need, feel free to post a new issue here.
