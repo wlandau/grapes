@@ -1,7 +1,13 @@
 assign_grapes = Vectorize(function(names, from, to){
+  if(!(names %in% ls(from))){
+    warning("function ", names, " not in found.")
+    return()
+  }
   value = from[[names]]
   if(is.function(value))
     assign(x = grape_names(names), value = value, envir = to)
+  else
+    warning(names, " is not a function.")
 }, vectorize.args = "names")
 
 grape_names = function(names){
