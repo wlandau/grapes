@@ -25,28 +25,6 @@ grapes = function(..., list = character(0), from = to, to = parent.frame()){
   force(from)
   force(to)
   from = get_from(from)
-  lapply(names, grape, from = from, to = to)
+  assign_grapes(names = names, from = from, to = to)
   invisible()
 }
-
-grape = function(name, from, to){
-  value = from[[name]]
-  if(is.function(value))
-    assign(x = grape_name(name), value = value, envir = to)
-}
-
-grape_name = function(name){
-  paste0("%", name, "%")
-}
-
-get_from = function(from){
-  if(is.character(from)){
-    require(from, character.only = TRUE)
-    from = paste0("package:", from) %>%
-      as.environment
-  }
-  if(!is.environment(from))
-    stop("argument 'from' must be a package name or an environment.")
-  from
-}
-
