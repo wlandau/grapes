@@ -24,7 +24,7 @@ test_that("functions() example", {
   expect_equal(functions(), character(0))
   myfun = function(x, y) x + y
   expect_equal(functions(), "myfun")
-  expect_true(length(functions("grapes")) > 0)
+  expect_true(is.character(functions("knitr")))
   expect_true(length(functions("knitr")) > 0)
   detach("package:knitr")
 })
