@@ -42,4 +42,4 @@ vignette("grapes")
 
 # Help and troubleshooting
 
-Read the [issue tracker](https://github.com/wlandau/grapes/issues) first, taking care to browse the closed ones as well. Afterwards, if you still feel the need, [submit a new issue](https://github.com/wlandau/grapes/issues/new) to log a bug report or feature request.
+Please read the [issue tracker](https://github.com/wlandau/grapes/issues) first, taking care to browse both open and closed issues. Afterwards, if you still feel the need, [submit a new issue](https://github.com/wlandau/grapes/issues/new) to log a bug report or feature request.
