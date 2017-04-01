@@ -1,58 +1,71 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "grapes"
+author: "William Michael Landau"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{grapes}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+<h1 align="center">
+  <img width="400" src="logo.png" alt="" style = "border: none">
+</h1>
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+The `grapes` package turns arbitrary functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), you can avoid cumbersome parentheses this way.
 
-## Vignette Info
-
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
-
-## Styles
-
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
-
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
-
-## Figures
-
-The figure sizes have been customised so that you can easily put two images side-by-side. 
-
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
+```{r}
+library(grapes)
+grapes(rbind, c, from = "base") # Use `from` to specify a package or environment to search. 
+nrow(sleep) 
+longer = sleep %rbind% sleep %rbind% sleep
+nrow(longer)
+1 %rbind% 2 %c% 3
 ```
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+In your workspace, you can define your own functions for your operators. That way, there is no need to set the `from` argument to tell `grapes()` where to look.
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
-
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
-
-## More Examples
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
+```{r}
+myop <- function(x, y){
+  1/x + 1/y
+}
+grapes(myop)
+2 %myop% 3
 ```
 
-Also a quote using `>`:
+**Operators are left-associative!**
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+```{r}
+2 %myop% 3 %myop% 4
+(2 %myop% 3) %myop% 4
+2 %myop% (3 %myop% 4)
+```
+
+
+Optionally, you can go crazy and try to turn everything from a package or environment into an operator. But be warned: for packages, only exported functions will become usable operators. Also, `grapes()` automatically loads the package you specify, but `ls("package:...")` requires that you load the package first.
+
+```{r}
+library(knitr) # needed for the next line
+suppressWarnings( # not everything in knitr is an exported function
+  grapes(list = ls("package:knitr"), from = "knitr") # same as objects("package:knitr")
+)
+`%purl%`
+```
+
+Advanced users can supply environments to the `from` and `to` arguments. This affords more control over where the functions come from and where the operators get assigned.
+
+```{r}
+to_env = new.env()
+from_env = new.env()
+from_env$nextop = function(a, b, extra = 3){
+  sqrt(a^2 + b^2) + extra
+}
+assign_operator = function(){
+  grapes(nextop, from = from_env, to = to_env)
+}
+assign_operator()
+# 1 %nextop% 2 # throws an error since %nextop% is not defined in your workspace
+eval(parse(text = "1 %nextop% 2"), envir = to_env)
+```
+

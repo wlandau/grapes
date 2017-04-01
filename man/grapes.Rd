@@ -28,7 +28,7 @@ you can call \code{sleep \%cbind\% sleep \%cbind\% sleep} to add
 to the columns of a data frame while avoiding cumbersome parentheses.
 }
 \examples{
-grapes(rbind, from = "base") # 'from' defaults to your current workspace
+grapes(rbind, from = "base") # Use `from` to specify a package or environment to search.
 nrow(sleep) # 20
 longer = sleep \%rbind\% sleep \%rbind\% sleep # No clumsy parentheses!
 nrow(longer) # 60. We'd all like to sleep longer.

@@ -54,6 +54,16 @@ test_that("grapes() assigns in an environment", {
   expect_equal(out, 2)
 })
 
+test_that("grapes() loads from a package", {
+  expect_error(1 %knit_params% 2)
+  expect_error(knit_params(1, 2))
+  expect_error(ls("package:knitr"))
+  grapes(knit_params, from = "knitr")
+  expect_equal(1 %knit_params% 2, knit_params(1, 2))
+  out = ls("package:knitr")
+  expect_true(length(out) > 0)
+})
+
 test_that("grapes() warns and stops correctly", {
   expect_warning(grapes("randomtext_aslkdasdkfjhkj", from = "base"))
   expect_warning(grapes("mtcars", from = "datasets"))

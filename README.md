@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img width="400" src="./vignettes/logo.png" alt="">
+  <img width="400" src="./vignettes/logo.png" alt="" style = "border: none">
 </h1>
 
 [![Travis-CI Build Status](https://travis-ci.org/wlandau/grapes.svg?branch=master)](https://travis-ci.org/wlandau/grapes)
@@ -7,7 +7,7 @@
 [![codecov.io](https://codecov.io/github/wlandau/grapes/coverage.svg?branch=master)](https://codecov.io/github/wlandau/grapes?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/grapes)](http://cran.r-project.org/package=grapes)
 
-The `grapes` package lets you turn functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), you can avoid cumbersome parentheses this way.
+The `grapes` package turns arbitrary functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), you can avoid cumbersome parentheses this way.
 
 ```r
 library(grapes)
