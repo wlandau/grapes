@@ -11,7 +11,7 @@ The `grapes` package lets you turn functions into binary operators. As with the 
 
 ```r
 library(grapes)
-grapes(rbind, from = "base") # 'from' defaults to your current workspace
+grapes(rbind, from = "base") # `from` defaults to your current workspace
 nrow(sleep) # 20
 longer = sleep %rbind% sleep %rbind% sleep # No clumsy parentheses!
 nrow(longer) # 60. We'd all like to sleep longer.

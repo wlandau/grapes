@@ -15,7 +15,7 @@
 #' package where \code{grapes()} will look for functions.
 #' @param to environment to store the new binary operators. 
 #' @examples
-#' grapes(rbind, from = "base") # 'from' defaults to your current workspace
+#' grapes(rbind, from = "base") # `from` defaults to your current workspace
 #' nrow(sleep) # 20
 #' longer = sleep %rbind% sleep %rbind% sleep # No clumsy parentheses!
 #' nrow(longer) # 60. We'd all like to sleep longer.
