@@ -24,4 +24,3 @@ functions()
 functions("grapes")
 functions("knitr")
 }
-

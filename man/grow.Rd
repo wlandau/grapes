@@ -31,4 +31,3 @@ nrow(sleep) # 20
 longer = sleep \%rbind\% sleep \%rbind\% sleep # No clumsy parentheses!
 nrow(longer) # 60. Most of us would like to sleep longer.
 }
-

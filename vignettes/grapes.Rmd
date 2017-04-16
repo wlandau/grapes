@@ -9,9 +9,7 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-<h1 align="center">
-  <img width="400" src="logo.png" alt="" style = "border: none">
-</h1>
+![](logo-vignette.png)
 
 In some computing subcultures, the term "grapes" refers to the percent sign, which R uses to name binary operators such as `%*%`. Here, `grapes` is an R package that turns arbitrary functions into binary operators. As with the [magrittr pipe](https://CRAN.R-project.org/package=magrittr/vignettes/magrittr.html), this allows you to avoid cumbersome parentheses in your code.
 

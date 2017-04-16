@@ -26,4 +26,3 @@ grow(myfun, to = env)
 bunch() # has "\%rbind\%"
 bunch(from = env) # "\%myfun\%"
 }
-

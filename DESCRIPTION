@@ -18,4 +18,4 @@ VignetteBuilder: knitr
 URL: https://github.com/wlandau/grapes
 BugReports: https://github.com/wlandau/grapes/issues
 Encoding: UTF-8
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1

@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img width="400" src="./vignettes/logo.png" alt="" style = "border: none">
+  <img width="400" src="./inst/logo.png" alt="" style = "border: none">
 </h1>
 
 [![Travis-CI Build Status](https://travis-ci.org/wlandau/grapes.svg?branch=master)](https://travis-ci.org/wlandau/grapes)
